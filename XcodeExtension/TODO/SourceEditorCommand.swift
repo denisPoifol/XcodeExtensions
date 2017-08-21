@@ -13,19 +13,26 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
 
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
         let comment = todoString()
-        guard
-            let selection = invocation.buffer.selections.firstObject as? XCSourceTextRange,
-            var lastSelectionLine = invocation.buffer.lines[selection.end.line] as? String else {
+        guard let selections = invocation.buffer.selections as? [XCSourceTextRange] else {
                 completionHandler(nil)
                 return
         }
-        let endOfSelectionIndex = lastSelectionLine.index(lastSelectionLine.startIndex, offsetBy: selection.end.column)
-        lastSelectionLine.insert(contentsOf: comment.characters, at: endOfSelectionIndex)
-        invocation.buffer.lines[selection.end.line] = lastSelectionLine
+        for selection in selections {
+            append(comment, atTheEndOf: selection, in: invocation)
+        }
         completionHandler(nil)
     }
 
     // MARK: - private methods
+
+    private func append(_ comment: String, atTheEndOf selection: XCSourceTextRange, in invocation: XCSourceEditorCommandInvocation) {
+        guard var lastSelectionLine = invocation.buffer.lines[selection.end.line] as? String else {
+            return
+        }
+        let endOfSelectionIndex = lastSelectionLine.index(lastSelectionLine.startIndex, offsetBy: selection.end.column)
+        lastSelectionLine.insert(contentsOf: comment.characters, at: endOfSelectionIndex)
+        invocation.buffer.lines[selection.end.line] = lastSelectionLine
+    }
 
     private func todoString() -> String {
         let date = Date()
