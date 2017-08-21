@@ -9,10 +9,23 @@
 import Foundation
 import XcodeKit
 
+private enum Command: String {
+    case TODO
+    case FIXME
+}
+
+private enum ExtensionError: String, Error {
+    case unrecognizedCommand
+}
+
 class SourceEditorCommand: NSObject, XCSourceEditorCommand {
 
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-        let comment = todoString()
+        guard let command = Command(rawValue: invocation.commandIdentifier) else {
+            completionHandler(ExtensionError.unrecognizedCommand)
+            return
+        }
+        let comment = string(for: command)
         var updatedSelections: [XCSourceTextRange] = []
         for selectionObject in invocation.buffer.selections {
             guard
@@ -93,15 +106,14 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-
-    private func todoString() -> String {
+    private func string(for command: Command) -> String {
         let date = Date()
         let dateString = DateFormatter.short.string(from: date)
         let userName = NSFullUserName()
 
-        var comment = "// TODO (\(userName)) \(dateString) "
+        var comment = "// \(command) (\(userName)) \(dateString) "
         comment.append("<#")
-        comment.append("TODO")
+        comment.append(command.rawValue)
         comment.append("#>")
         return comment
     }
