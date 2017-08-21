@@ -16,5 +16,18 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         
         completionHandler(nil)
     }
-    
+
+    // MARK: - private methods
+
+    private func todoString() -> String {
+        let date = Date()
+        let dateString = DateFormatter.short.string(from: date)
+        let userName = NSFullUserName()
+
+        var comment = "// TODO (\(userName)) \(dateString) "
+        comment.append("<#")
+        comment.append("TODO")
+        comment.append("#>")
+        return comment
+    }
 }
