@@ -10,10 +10,18 @@ import Foundation
 import XcodeKit
 
 class SourceEditorCommand: NSObject, XCSourceEditorCommand {
-    
+
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void ) -> Void {
-        // Implement your command here, invoking the completion handler when done. Pass it nil on success, and an NSError on failure.
-        
+        let comment = todoString()
+        guard
+            let selection = invocation.buffer.selections.firstObject as? XCSourceTextRange,
+            var lastSelectionLine = invocation.buffer.lines[selection.end.line] as? String else {
+                completionHandler(nil)
+                return
+        }
+        let endOfSelectionIndex = lastSelectionLine.index(lastSelectionLine.startIndex, offsetBy: selection.end.column)
+        lastSelectionLine.insert(contentsOf: comment.characters, at: endOfSelectionIndex)
+        invocation.buffer.lines[selection.end.line] = lastSelectionLine
         completionHandler(nil)
     }
 
