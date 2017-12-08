@@ -12,6 +12,7 @@ import XcodeKit
 private enum Command: String {
     case TODO
     case FIXME
+    case COMMENT
 }
 
 extension Command {
@@ -22,6 +23,8 @@ extension Command {
             return "TODO:"
         case .FIXME:
             return "FIXME:"
+        case .COMMENT:
+            return "???:"
         }
     }
 }
