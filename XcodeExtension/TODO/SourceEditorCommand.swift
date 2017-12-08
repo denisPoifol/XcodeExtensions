@@ -63,13 +63,13 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
                 start: selection.start,
                 end: XCSourceTextPosition(
                     line: selection.start.line,
-                    column: selection.start.column + text.characters.count
+                    column: selection.start.column + text.count
                 )
             )
             guard var lineToChange = buffer.lines[line] as? String else { return nil }
             let subRangeStartIndex = lineToChange.index(lineToChange.startIndex, offsetBy: selection.start.column)
             guard selection.end.column > selection.start.column else {
-                lineToChange.insert(contentsOf: text.characters, at: subRangeStartIndex)
+                lineToChange.insert(contentsOf: text, at: subRangeStartIndex)
                 buffer.lines[selection.start.line] = lineToChange
                 return newSelection
             }
@@ -88,7 +88,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
                         start: selection.start,
                         end: XCSourceTextPosition(
                             line: selection.start.line,
-                            column: firstLine.characters.count
+                            column: firstLine.count
                         )
                     ),
                     in: buffer, with: text)
@@ -98,7 +98,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
                 start: selection.start,
                 end: XCSourceTextPosition(
                     line: selection.start.line,
-                    column: groupedLines.characters.count + selection.end.column - lastLine.characters.count + 1
+                    column: groupedLines.count + selection.end.column - lastLine.count + 1
                 )
             )
             buffer.lines.removeObject(at: selection.end.line)
