@@ -14,6 +14,18 @@ private enum Command: String {
     case FIXME
 }
 
+extension Command {
+
+    var formatted: String {
+        switch self {
+        case .TODO:
+            return "TODO:"
+        case .FIXME:
+            return "FIXME:"
+        }
+    }
+}
+
 private enum ExtensionError: String, Error {
     case unrecognizedCommand
 }
@@ -111,7 +123,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         let dateString = DateFormatter.short.string(from: date)
         let userName = NSFullUserName()
 
-        var comment = "// \(command) (\(userName)) \(dateString) "
+        var comment = "// \(command.formatted) (\(userName)) \(dateString) "
         comment.append("<#")
         comment.append(command.rawValue)
         comment.append("#>")
