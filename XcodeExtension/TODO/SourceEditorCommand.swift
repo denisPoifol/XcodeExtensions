@@ -41,19 +41,12 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             return
         }
         let comment = string(for: command)
-        var updatedSelections: [XCSourceTextRange] = []
-        for selectionObject in invocation.buffer.selections {
-            guard
-                let selection = selectionObject as? XCSourceTextRange,
-                let newSelection = replace(selection, in: invocation.buffer, with: comment) else {
-                    continue
-            }
-            updatedSelections.append(newSelection)
+        let selections: [XCSourceTextRange] = invocation.buffer.selections.flatMap { $0 as? XCSourceTextRange }
+        let updatedSelections: [XCSourceTextRange] = selections.flatMap {
+            return replace($0, in: invocation.buffer, with: comment)
         }
         invocation.buffer.selections.removeAllObjects()
-        for selection in updatedSelections {
-            invocation.buffer.selections.add(selection)
-        }
+        invocation.buffer.selections.addObjects(from: updatedSelections)
         completionHandler(nil)
     }
 
