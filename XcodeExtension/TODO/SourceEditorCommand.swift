@@ -55,12 +55,17 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     private func replace(_ selection: XCSourceTextRange, in buffer: XCSourceTextBuffer, with text: String) -> XCSourceTextRange? {
         if selection.start.line == selection.end.line {
             let line = selection.start.line
+            let newSelectionStart = XCSourceTextPosition(
+                line: selection.start.line,
+                column: selection.start.column + prefix(from: text).count
+            )
+            let newSelectionEnd = XCSourceTextPosition(
+                line: selection.start.line,
+                column: newSelectionStart.column + self.selection(from: text).count
+            )
             let newSelection = XCSourceTextRange(
-                start: selection.start,
-                end: XCSourceTextPosition(
-                    line: selection.start.line,
-                    column: selection.start.column + text.count
-                )
+                start: newSelectionStart,
+                end: newSelectionEnd
             )
             guard var lineToChange = buffer.lines[line] as? String else { return nil }
             let subRangeStartIndex = lineToChange.index(lineToChange.startIndex, offsetBy: selection.start.column)
@@ -124,5 +129,17 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         comment.append(command.rawValue)
         comment.append("#>")
         return comment
+    }
+
+    private func prefix(from commandString: String) -> String {
+        guard let firstIndex = commandString.index(of: "<") else { return "" }
+        return commandString.substring(to: firstIndex)
+    }
+
+    private func selection(from commandString: String) -> String {
+        guard
+            let firstIndex = commandString.index(of: "<"),
+            let endIndex = commandString.index(of: ">") else { return "" }
+        return commandString.substring(with: firstIndex..<endIndex)
     }
 }
