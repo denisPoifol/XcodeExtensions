@@ -81,8 +81,9 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         } else if selection.start.line + 1 == selection.end.line {
             guard
                 let firstLine = buffer.lines[selection.start.line] as? String,
-                let lastLine = buffer.lines[selection.end.line] as? String
-                else { return nil }
+                let lastLine = buffer.lines[selection.end.line] as? String else {
+                    return nil
+            }
             if selection.end.column == 0 {
                 return replace(
                     XCSourceTextRange(
@@ -92,7 +93,9 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
                             column: firstLine.count
                         )
                     ),
-                    in: buffer, with: text)
+                    in: buffer,
+                    with: text
+                )
             }
             let groupedLines = firstLine.appending(lastLine).replacingOccurrences(of: "\n", with: "")
             let newSelection = XCSourceTextRange(
