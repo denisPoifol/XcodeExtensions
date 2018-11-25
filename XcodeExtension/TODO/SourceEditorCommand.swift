@@ -41,8 +41,8 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             return
         }
         let comment = string(for: command)
-        let selections: [XCSourceTextRange] = invocation.buffer.selections.flatMap { $0 as? XCSourceTextRange }
-        let updatedSelections: [XCSourceTextRange] = selections.flatMap {
+        let selections: [XCSourceTextRange] = invocation.buffer.selections.compactMap { $0 as? XCSourceTextRange }
+        let updatedSelections: [XCSourceTextRange] = selections.compactMap {
             return replace($0, in: invocation.buffer, with: comment)
         }
         invocation.buffer.selections.removeAllObjects()
@@ -136,13 +136,13 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
 
     private func prefix(from commandString: String) -> String {
         guard let firstIndex = commandString.index(of: "<") else { return "" }
-        return commandString.substring(to: firstIndex)
+        return String(commandString[..<firstIndex])
     }
 
     private func selection(from commandString: String) -> String {
         guard
             let firstIndex = commandString.index(of: "<"),
             let endIndex = commandString.index(of: ">") else { return "" }
-        return commandString.substring(with: firstIndex..<endIndex)
+        return String(commandString[firstIndex..<endIndex])
     }
 }
