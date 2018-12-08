@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:XcodeExtension.xcodeproj">
+      location = "self:/Users/denis/Sources/XcodeExtensions/XcodeExtension/XcodeTODO.xcodeproj">
    </FileRef>
 </Workspace>

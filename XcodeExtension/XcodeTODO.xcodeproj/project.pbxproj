@@ -44,7 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5AC38A041F4B7005007C92E6 /* XcodeExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AC38A041F4B7005007C92E6 /* XcodeTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC38A071F4B7005007C92E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AC38A091F4B7005007C92E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5AC38A0B1F4B7005007C92E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		5AC38A051F4B7005007C92E6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5AC38A041F4B7005007C92E6 /* XcodeExtension.app */,
+				5AC38A041F4B7005007C92E6 /* XcodeTODO.app */,
 				5AC38A1A1F4B7031007C92E6 /* TODO.appex */,
 			);
 			name = Products;
@@ -149,9 +149,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5AC38A031F4B7005007C92E6 /* XcodeExtension */ = {
+		5AC38A031F4B7005007C92E6 /* XcodeTODO */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5AC38A131F4B7005007C92E6 /* Build configuration list for PBXNativeTarget "XcodeExtension" */;
+			buildConfigurationList = 5AC38A131F4B7005007C92E6 /* Build configuration list for PBXNativeTarget "XcodeTODO" */;
 			buildPhases = (
 				5AC38A001F4B7005007C92E6 /* Sources */,
 				5AC38A011F4B7005007C92E6 /* Frameworks */,
@@ -163,9 +163,9 @@
 			dependencies = (
 				5AC38A271F4B7031007C92E6 /* PBXTargetDependency */,
 			);
-			name = XcodeExtension;
+			name = XcodeTODO;
 			productName = XcodeExtension;
-			productReference = 5AC38A041F4B7005007C92E6 /* XcodeExtension.app */;
+			productReference = 5AC38A041F4B7005007C92E6 /* XcodeTODO.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5AC38A191F4B7031007C92E6 /* TODO */ = {
@@ -207,7 +207,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5AC389FF1F4B7005007C92E6 /* Build configuration list for PBXProject "XcodeExtension" */;
+			buildConfigurationList = 5AC389FF1F4B7005007C92E6 /* Build configuration list for PBXProject "XcodeTODO" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -220,7 +220,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5AC38A031F4B7005007C92E6 /* XcodeExtension */,
+				5AC38A031F4B7005007C92E6 /* XcodeTODO */,
 				5AC38A191F4B7031007C92E6 /* TODO */,
 			);
 		};
@@ -455,7 +455,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5AC389FF1F4B7005007C92E6 /* Build configuration list for PBXProject "XcodeExtension" */ = {
+		5AC389FF1F4B7005007C92E6 /* Build configuration list for PBXProject "XcodeTODO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AC38A111F4B7005007C92E6 /* Debug */,
@@ -464,7 +464,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5AC38A131F4B7005007C92E6 /* Build configuration list for PBXNativeTarget "XcodeExtension" */ = {
+		5AC38A131F4B7005007C92E6 /* Build configuration list for PBXNativeTarget "XcodeTODO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5AC38A141F4B7005007C92E6 /* Debug */,
