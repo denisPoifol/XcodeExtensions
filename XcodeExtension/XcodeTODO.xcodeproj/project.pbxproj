@@ -81,7 +81,7 @@
 		5AC389FB1F4B7005007C92E6 = {
 			isa = PBXGroup;
 			children = (
-				5AC38A061F4B7005007C92E6 /* XcodeExtension */,
+				5AC38A061F4B7005007C92E6 /* XcodeTODO */,
 				5AC38A1B1F4B7031007C92E6 /* Frameworks */,
 				5AC38A051F4B7005007C92E6 /* Products */,
 			);
@@ -96,7 +96,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5AC38A061F4B7005007C92E6 /* XcodeExtension */ = {
+		5AC38A061F4B7005007C92E6 /* XcodeTODO */ = {
 			isa = PBXGroup;
 			children = (
 				5AC38A2D1F4B7131007C92E6 /* Categories */,
@@ -107,7 +107,7 @@
 				5AC38A0D1F4B7005007C92E6 /* Main.storyboard */,
 				5AC38A101F4B7005007C92E6 /* Info.plist */,
 			);
-			path = XcodeExtension;
+			path = XcodeTODO;
 			sourceTree = "<group>";
 		};
 		5AC38A1B1F4B7031007C92E6 /* Frameworks */ = {
