@@ -11,7 +11,7 @@ import Foundation
 extension DateFormatter {
     static let short: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateFormat = "YYYY/MM/dd"
         return dateFormatter
     } ()
 }
